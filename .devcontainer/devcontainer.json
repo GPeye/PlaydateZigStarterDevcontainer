@@ -1,0 +1,46 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/cpp
+{
+	"name": "C++",
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+	"features": {
+		"ghcr.io/devcontainers-contrib/features/zig:1": {
+			"version": "master"
+		}
+	},
+	"mounts": [
+		"source=/etc/PlaydateSDK,target=/etc/PlaydateSDK,type=bind,consistency=cached",
+		"source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached"
+	],
+	"containerEnv": {
+		"PLAYDATE_SDK_PATH": "/etc/PlaydateSDK"
+	},
+	"remoteEnv": {
+		"LOCAL_WORKSPACE": "${localWorkspaceFolder}",
+		"LOCAL_USER": "${localEnv:USER}"
+	},
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "gcc -v",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ziglang.vscode-zig"
+			]
+		}
+	},
+
+	// Configure tool-specific properties.
+	// "customizations": {},
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+}
